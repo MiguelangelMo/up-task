@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include ./partials/head.pug
+    body.login
+        .contenedor-formulario
+            h1=title
+
+            if typeof(message) === 'string'
+                p.error.alerta= message
+
+            if errores && errores.length > 0
+                each val in errores
+                    p.error.alerta=val.message
+
+                    //if locals.mensaje
+                        .alertas
+                            each categoria in Object.keys(locals.mensaje)
+                                each val in error[categoria]
+                                    .alerta(class=`${categoria}`)
+                                        p=val
+
+
+            form#formulario.caja.caja-login(method="POST" action="/auth")
+                .campo
+                    label(for="email") E-Mail
+                    input(type="text" name="email" id="email" placeholder="Ingresa tu E-Mail" value=email)
+
+                .campo
+                    label(for="password") Password
+                    input(type="password" name="password" id="password" placeholder="Ingresa tu Password" value=password)
+
+                .campo.enviar
+                    input(type="submit" value=title).boton
+
+                .campo
+                    a(href="/login" title="Login")= sesion

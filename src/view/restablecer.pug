@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+html(lang="es")
+    head
+        include ./partials/head        
+    body.login
+        .contenedor-formulario
+            h1=title
+            p Ingresa el E-Mail de tu cuenta para restablecer tu Contraseña
+
+            if typeof(message) === 'string'
+                .error.alerta
+                    p=message
+
+            form.caja-login(method="POST" action="/restablecer")
+                .campo
+                    label(for="email")
+                    input(type="email" id="email" name="email" placeholder="Ingresa tu contraseña")
+
+                .campo.enviar
+                    input(type="submit" value="Restablecer").boton
+
+                .campo.acciones
+                    a(href="/login" title="Login")= sesion

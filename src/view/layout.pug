@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html(lang="es")
+    head
+        include ./partials/head.pug
+    body
+        header.barra
+            a(href="/")
+                h1 Up-Task - Educativo
+            a(href="/cerrar_sesion") Cerrar Sesión 
+
+
+        main.contenedor
+            aside.contenedor-proyectos
+                .panel.crear-proyecto
+                    a(href="/new-project").boton Crear Actividad 
+                        span +
+                .panel.lista-proyectos
+                    h2 Actividades
+                    ul#proyectos.proyectos
+                        if (proyecto.length > 0)
+                            each proyectos in proyecto
+                                li
+                                    a(href=`/pyt/${proyectos.url}` title="Proyectos")=proyectos.nombre
+
+            block container
+
+    script(src="/dist/bundle.js")
+

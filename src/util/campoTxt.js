@@ -1,0 +1,1 @@
+export const text = /^[A-Za-z0-9\s]+$/;

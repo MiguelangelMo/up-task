@@ -1,0 +1,36 @@
+extends ./layout.pug
+
+block container
+    .contenido-principal
+        h2 #{task} - #{proyectos.nombre}
+
+        form(action=`/pyt/${proyectos.url}` method="POST").agregar-tarea
+            .campo
+                label(for="tarea")
+                input(type="text" name="tarea" id ="tarea" placeholder="Ingresa tu tarea").nombre-tarea
+            .campo-enviar
+                input(type="submit" value="Agregar Tarea").boton.nueva-tarea
+
+        .listado-pendientes
+            ul
+                if tarea.length > 0
+                    each tareas in tarea
+                        li.tarea(data-tarea=tareas.id)
+                            p=tareas.nombre
+                            .acciones
+                                if tareas.estado
+                                    i(class="fa fa-check-circle")
+                                else
+                                    i(class="fa fa-minus-circle")
+                                i(class="fa fa-trash") 
+                else 
+                    p No hay Tareas disponibles
+
+        .avance
+            h2 Avance de proyecto
+            #barra-avance.barra-avance
+                #porcentaje.porcentaje
+
+        .contenedor-acciones
+            a(href=`/getUpdateProject/${proyectos.id}`, title="Editar").boton Editar
+            button(data-eliminar=proyectos.url href="#" type="boton" title="Eliminar").boton.eliminar#eliminar-proyecto Eliminar

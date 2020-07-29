@@ -1,0 +1,13 @@
+extends ./layout.pug
+include ./mixins/createProyect.pug
+
+block container
+    .contenido-principal
+        h2= title
+
+        if errores
+            each error in errores
+                .alerta= error.error
+        
+        +createProyect(proyectos)
+        

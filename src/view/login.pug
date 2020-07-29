@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include ./partials/head.pug
+    body.login
+        .contenedor-formulario
+            h1=title
+
+            if typeof(message) === 'string'
+                p.correcto= message
+
+            if error
+                p.alerta.error= error
+
+            form#formulario.caja.caja-login(method="POST" action="/login")
+                .campo
+                    label(for="email") E-Mail
+                    input(type="text" name="email" id="email" placeholder="Ingresa tu E-Mail" value=email)
+
+                .campo
+                    label(for="password") Password
+                    input(type="password" name="password" id="password" placeholder="Ingresa tu Password" value=password)
+
+                .campo.enviar
+                    input(type="submit" value=title).boton
+
+                .campo.acciones
+                    a(href="/auth" title="Login")= sesion
+                    a(href="/restablecer" title="Login")= pass
